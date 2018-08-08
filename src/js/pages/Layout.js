@@ -5,26 +5,23 @@ import Settings from "./Settings";
 import Archives from "./Archives";
 
 class Layout extends React.Component {
-    navigate(){
-        console.log(this.props.history);
-        this.props.history.push('/', null);
-        console.log(this.props);
-    }
-
     render() {
+        const {history} = this.props;
         return (
             <div>
                 <h1>KillerNews.net</h1>
-                {this.props.children}
-                <Link to='settings' class="btn btn-default">Settings</Link >
-                <Link to='archives' class="btn btn-default">Archives</Link >
-                <button onClick={this.navigate.bind(this)}>Featured</button>
-                <Link to='' class="btn btn-default">Featured</Link >
-                <Switch>
-                    <Route path="/settings" component={Settings} />
-                    <Route path="/archives" component={Archives} />
-                    <Route exact path="/" component={Featured} />
-                </Switch>
+                <div>
+                    <Link to="/archives" class="btn btn-sm btn-success">archives</Link>
+                    <Link to="/settings" class="btn btn-sm btn-primary">settings</Link>
+                    <Link to="/" class="btn btn-sm btn-danger">featured</Link>
+                </div>
+                <div>
+                    <Switch>
+                        <Route path="/settings" component={Settings} />
+                        <Route path="/archives/:article" name="archives" component={Archives} />
+                        <Route exact path="/" component={Featured} />
+                    </Switch>
+                </div>
             </div>
         );
 
