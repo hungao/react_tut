@@ -5,6 +5,11 @@ import Settings from "./Settings";
 import Archives from "./Archives";
 
 class Layout extends React.Component {
+    navigate(){
+        console.log(this.props.history);
+        this.props.history.push('/', null);
+        console.log(this.props);
+    }
 
     render() {
         return (
@@ -13,6 +18,7 @@ class Layout extends React.Component {
                 {this.props.children}
                 <Link to='settings' class="btn btn-default">Settings</Link >
                 <Link to='archives' class="btn btn-default">Archives</Link >
+                <button onClick={this.navigate.bind(this)}>Featured</button>
                 <Link to='' class="btn btn-default">Featured</Link >
                 <Switch>
                     <Route path="/settings" component={Settings} />
